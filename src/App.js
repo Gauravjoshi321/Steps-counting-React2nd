@@ -13,15 +13,15 @@ function App() {
   // let step = 1;
 
   function handlePrevious() {
-    if (step > 1) setStep(--step);
+    if (step > 1) setStep(st => --st);
   }
   function handleNext() {
-    if (step < 3) setStep(++step);
+    if (step < 3) setStep(st => ++st);
   }
 
   return (
     <>
-      <button className="close" onClick={() => setIsOpen(!isOpen)}>&times;</button>
+      <button className="close" onClick={() => setIsOpen(isO => !isO)}>&times;</button>
 
       {isOpen && (<div className="steps">
 
@@ -36,13 +36,26 @@ function App() {
         </p>
 
         <div className="buttons">
-          <button onClick={handlePrevious} style={{ backgroundColor: "#7950f2", color: "#fff" }} >Previous</button>
-          <button onClick={handleNext} style={{ backgroundColor: "#7950f2", color: "#fff" }} >Next</button>
+          <Button onClick={handlePrevious}> <span>👈</span> Previous</Button>
+
+          <Button onClick={handleNext}> Next <span>👉</span></Button>
         </div>
 
-      </div>)}
+      </div >
+      )}
     </>
   )
+}
+
+function Button({ onClick, children }) {
+  return <button
+    style={{
+      backgroundColor: "#7950f2",
+      color: "#fff"
+    }}
+    onClick={onClick}>
+    {children}
+  </button>
 }
 
 export default App;
